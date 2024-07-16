@@ -34,3 +34,23 @@ const startRecording = () => {
   
     console.log("Recording... Press Enter to stop");
   };
+
+  // Function to stop recording and process the audio
+const stopRecordingAndProcess = () => {
+    if (mic && micStream) {
+      micStream.on("end", () => {
+        outputFile.end();
+        console.log(`Recording stopped, processing audio...`);
+        transcribeAndChat(); // Transcribe the audio and initiate chat
+      });
+  
+      try {
+        mic.stopRecording();
+        micStream.emit("end"); // Emit 'end' event manually to ensure processing
+      } catch (error) {
+        console.error("Error stopping the microphone:", error);
+      }
+    } else {
+      console.log("No active recording found.");
+    }
+  };
