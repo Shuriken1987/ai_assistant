@@ -11,7 +11,7 @@ const secretKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
   apiKey: secretKey,
 });
-
+ 
 // Variables to store chat history and other components 
 let chatHistory = []; // To store the conversation history
 let mic, outputFile, micStream, rl; // Microphone, output file, microphone stream, and readline interface
